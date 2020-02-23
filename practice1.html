@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+      <title>Vue practice 1</title>
+      <style>
+        .empty {
+          border-color: red;
+        }
+      </style>
+  </head>
+  <body>
+    <div id='app'>
+      <input type="text" v-bind:class = "{empty:!count}" v-model="value"/>
+      <input type = "button" value = "send" v-on:click = "send"/>
+      <div v-if="count"> Value's value is: {{value}}</div>
+      <div> Userinput's length is: {{count}}.</div>
+    </div>
+
+  </body>
+  <script src = "https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el:'#app',
+      data: function(){
+        return {value:""}
+      },
+      methods:{
+        send: function() {
+          if(!this.count){
+            alert("Please enter your input");
+          }
+          else{
+            alert("Send successfully!");
+            this.value = "";
+          }
+
+        }
+      },
+      computed:{
+        count: function(){
+          return this.value.length;
+        }
+      }
+
+    })
+  </script>
+</html>
